@@ -1,0 +1,6 @@
+#!/usr/bin/rc
+# html - generate the html tag that corresponds to argv[0]
+tag = `{basename $0}
+echo -n '<'^$tag^'>'
+cat $*
+echo -n '</'^$tag^'>'

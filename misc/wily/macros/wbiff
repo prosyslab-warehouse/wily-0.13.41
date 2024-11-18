@@ -1,0 +1,22 @@
+#!/usr/bin/rc
+# wbiff - wily/acme mailbox watcher, by steve@border.com
+# it includes the string $mail:line in all output, so you can B3 on it
+
+mail=/var/mail/$USER					# Unix mailbox
+test -f /dev/sysstat && mail=/mail/box/$user/mbox	# Plan 9 mailbox
+
+interval=30
+t1=/tmp/wbiff.1.$USER
+t2=/tmp/wbiff.2.$USER
+
+fn frm { egrep -n '^From |^Subject:' $1  | sed 's/^/wbiff $m:/' }
+
+frm $mail > $t1
+> $t1
+echo wbiff watching $mail on `{sdate}
+while() {
+	frm $mail > $t2
+	diff $t1 $t2 | egrep '>' | sed 's/> //'
+	mv $t2 $t1
+	sleep $interval
+}

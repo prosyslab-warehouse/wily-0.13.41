@@ -1,0 +1,9 @@
+#!/usr/bin/rc
+# html1 - generate the html tag that corresponds to argv[0][0] (a single char)
+#
+#	 bold=<b>	italic=<i>	underline=<u>
+
+tag = `{basename $0| sed 's;\(.\)[^/]*$;\1;' }
+echo -n '<'^$tag^'>'
+cat $*
+echo -n '</'^$tag^'>'

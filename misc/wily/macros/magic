@@ -1,0 +1,87 @@
+#!/usr/bin/sh
+#
+# magic-cat - this script tries to guess what kind of data a file contains,
+#	      and then runs a program that knows what to do with that data
+#	      It can be teamed with AFDP by 'afdpsend -c magic-cat file1 file2'
+#	      to send multimedia files to many systems at once. Upon receiving
+#	      the files each system will run magic-cat to display them locally.
+#	      Steve Kotsopoulos <steve@ecf.toronto.edu>
+#
+# rcsid[] = "$Id: magic-cat,v 1.10 1995/10/24 16:37:25 steve Exp $";
+
+PATH=/local/bin:/usr/local/bin:/usr/ucb:/usr/bin:/bin:$PATH:$HOME/bin
+
+# start with some reasonable defaults
+TMP=/tmp/magic.$$
+MYMAGIC=$HOME/bin/etc.magic	# for systems where /etc/magic is incomplete
+PROGfile="file -m $MYMAGIC"
+PROGfile="file"
+PROGimage="xli -delay 10 -geometry +200+200 -quiet"
+PROGps="ghostview -geometry -0-0"
+PROGmpeg="mpeg_play"
+PROGmovie="xanim"
+PROGsound=$PROGfile
+PROGrgb=$PROGfile
+PROGtext="head"
+
+case $# in
+	0)	echo 'Usage: magic-cat file ...'; exit ;;
+	1)	BACKGROUND=1 ;;		# run file in background, if only 1 arg
+	*)	BACKGROUND=0 ;;		# run files in foreground, 1 at a time
+esac
+
+case `uname` in
+	NetBSD|"BSD/OS"|"BSD/386")
+		XPLAYGIZMO=false; export XPLAYGIZMO; PROGimage="xv";
+		PROGsound="showaudio audio/au" ;;
+	IRIX)	
+		PROGsound="sfplay -p"; PROGrgb="ipaste" ;;
+	SunOS)	
+		PROGsound="play" ;;
+	*)	
+		PROGps=$PROGfile ;;	# assume we don't have ghostview
+esac
+
+# if !$DISPLAY ; then		# we aren't running under X Windows!?
+#	PROGimage=$PROGfile
+# fi
+
+for ARG
+do
+	# default program to run, if we can't figure out what file contains
+	PROG=$PROGfile
+
+	$PROGfile $ARG > $TMP
+	if grep "SGI imagelib image" $TMP; then
+		PROG=$PROGrgb
+	elif egrep '(image|GIF|JPEG|jpeg|rasterfile|xpm|xbm)' $TMP ; then
+		PROG=$PROGimage
+	elif grep face $TMP ; then
+		PROG=xview			# xv does not support face files
+	elif grep AIFF $TMP ; then
+		PROG=playaiff			# only on SGI systems
+	elif egrep '(audio|sound)' $TMP ; then
+		PROG=$PROGsound
+	elif grep -i PostScript $TMP ; then
+		PROG=$PROGps
+	elif grep -i mpg $TMP ; then
+		PROG=$PROGmpeg
+	elif grep -i movie $TMP ; then
+		PROG=$PROGmovie
+	elif grep -i text $TMP; then
+		PROG=$PROGtext
+	elif grep "shell script" $TMP; then
+		PROG=$PROGtext
+	else
+		echo "$ARG: file type not supported:"
+	fi
+
+	if test "$BACKGROUND" = 1 ; then
+		$PROG $ARG &	# run program in background, so we exit NOW
+	else
+		$PROG $ARG
+	fi
+done
+
+rm -f $TMP
+exit 0

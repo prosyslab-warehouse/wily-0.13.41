@@ -1,0 +1,44 @@
+#!/usr/bin/rc
+#
+# skel - create a skeletal html document that lists a bunch of files in a <ul>
+#	 search for xxx to find the places where you'll want to edit
+
+cat <<EOF
+<html><head><title>
+xxx auto-generated title
+</title></head>
+
+<!-- off-white background, red visited links -->
+<body bgcolor="#fffdef" vlink="#ff0000">
+
+<!-- colours: RGB - Red,Green,Blue -->
+<black   bgcolor="#000000">
+<red     bgcolor="#ff0000">
+<green   bgcolor="#00ff00">
+<blue    bgcolor="#0000ff">
+<cyan    bgcolor="#00ffff">     <!-- blue   -->
+<magenta bgcolor="#ff00ff">     <!-- purple -->
+<yellow  bgcolor="#ffff00">
+<white   bgcolor="#ffffff">
+
+<dark_purple bgcolor="#bf30df">
+<light_blue  bgcolor="#cfe0ff">
+<pale_green  bgcolor="#66d888">
+<off-white   bgcolor="#fffdef">
+
+<center><h1>
+xxx auto-generated heading
+</h1>
+</center>
+
+EOF
+
+ulhref $*
+
+htmlsig
+
+cat <<EOF
+
+</body>
+</html>
+EOF

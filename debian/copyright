@@ -1,0 +1,32 @@
+This is the Debian prepackaged version of Wily.
+
+This package was put together originally by Karl Sackett <krs@debian.org>,
+from sources obtained from:
+	ftp://ftp.cs.su.oz.au/gary/wily.tgz
+	ftp://ftp.cs.su.oz.au/gary/wily/tools/shell/html.tgz
+	ftp://ftp.cs.su.oz.au/gary/wily/tools/shell/macros.tgz
+
+For more information see:
+	http://www.cs.su.oz.au/~gary/wily/
+	http://www.cs.yorku.ca/~oz/wily/
+
+The current maintainer is MJ Ray <mjr@debian.org>
+The previous maintainer was Karl Sackett <krs@debian.org>
+
+Copyright:
+
+ * The author of this software is Gary Capell.
+ *              Copyright (c) 1995, 1996 by Gary Capell.
+ * Permission to use, copy, modify, and distribute this software for any
+ * purpose without fee is hereby granted, provided that this entire notice
+ * is included in all copies of any software which is or includes a copy
+ * or modification of this software and in all copies of the supporting
+ * documentation for such software.
+ * THIS SOFTWARE IS BEING PROVIDED "AS IS", WITHOUT ANY EXPRESS OR IMPLIED
+ * WARRANTY.  IN PARTICULAR, THE AUTHOR DOES NOT MAKE ANY
+ * REPRESENTATION OR WARRANTY OF ANY KIND CONCERNING THE MERCHANTABILITY
+ * OF THIS SOFTWARE OR ITS FITNESS FOR ANY PARTICULAR PURPOSE.
+
+It can be distributed under the terms of the Artistic licence, full text
+of which can on Debian systems be found in /usr/share/common-licenses
+

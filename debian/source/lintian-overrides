@@ -1,0 +1,2 @@
+# These are removed in debian/rules clean target
+wily source: configure-generated-file-in-source tools/win/config*

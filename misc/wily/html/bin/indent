@@ -1,0 +1,3 @@
+#!/usr/bin/rc
+# indent - by one tab
+sed 's/^/	/' $*

@@ -1,0 +1,18 @@
+wily/wily /usr/bin
+tools/win/win /usr/bin
+tools/win/wgoto /usr/bin
+tools/win/wreplace /usr/bin
+
+misc/fixed.9.font /usr/share/fonts/X11/misc/
+misc/prop.9.font /usr/share/fonts/X11/misc/
+
+README /usr/share/doc/wily/
+misc/wily.xpm /usr/share/doc/wily/
+misc/wily2.xpm /usr/share/doc/wily/
+Doc/demo.utf /usr/share/doc/wily/
+
+Doc/perl.txt /usr/share/doc/wily/html
+Doc/FAQ.txt /usr/share/doc/wily/html
+Doc/changes.txt /usr/share/doc/wily/html
+Doc/*.html /usr/share/doc/wily/html
+Doc/*.gif /usr/share/doc/wily/html

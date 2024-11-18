@@ -1,0 +1,3 @@
+#!/usr/bin/rc
+# unquote - for email
+sed 's/^> //' $*

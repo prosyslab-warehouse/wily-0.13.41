@@ -1,0 +1,34 @@
+Wily html tools:
+
+README		this file
+guide		guide file
+bin/		script directory, contains the following programs:
+
+    books	removes un-needed tags from Netscape bookmark files
+    href	generate an href
+    html	h1 h2 h3 h4 h5 h6 title pre cite code em kbd samp strong var tt dfn
+    html1	bold italic underline
+    htmlsig	add your signature to an html document
+    indent	indent - by one tab
+    mdate	metric date?
+    quote	quote - for email
+    remote	tell netscape to open a URL
+    sdate	short-form date
+    skel	create a skeletal html document (a good thing to start with)
+    ulhref	create an unordered list, where each list item is an href
+    ullist	create a simple unordered list
+    undent	undent - by one tab
+    unquote	unquote - for email
+
+All scripts assume rc is in /bin/rc, so they can run under acme on plan9
+unmodified (though I haven't tested it yet).
+
+This package should be installed under $home/wily/html
+and you should make sure $home/wily/html/bin is in your path
+To set things up, 'cd' to the bin directory and run 'make', which
+sets up a bunch of symbolic links to the html and html1 scripts,
+then just point wily at $home/wily/html/guide
+
+html, indent, remote, undent by Gary Capell, other scripts by Steve Kotsopoulos
+
+Comments to steve@border.com please

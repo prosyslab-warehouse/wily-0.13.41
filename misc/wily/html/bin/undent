@@ -1,0 +1,3 @@
+#!/usr/bin/rc
+# undent - by one tab
+sed 's/^	//' $*

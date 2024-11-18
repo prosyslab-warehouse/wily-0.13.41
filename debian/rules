@@ -1,0 +1,51 @@
+#!/usr/bin/make -f
+# Derived from dh_make example.
+
+-include /usr/share/dpkg/buildtools.mk
+export CC
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+	dh_auto_configure -- --with-X
+	dh_auto_configure --builddirectory=tools/win -- --with-X --cache-file=../../config.cache
+
+override_dh_auto_build:
+	dh_auto_build
+	dh_auto_build --builddirectory=tools/win
+
+du_auto_clean:
+	dh_auto_clean
+	rm -f build-stamp install-stamp
+	[ ! -e Makefile ] || $(MAKE) nuke
+	cd tools/win && [ ! -e Makefile ] || $(MAKE) clean
+	rm -f ./Makefile libXg/Makefile libframe/Makefile \
+	  libmsg/Makefile wily/Makefile tools/win/Makefile
+	rm -f config.h config.cache config.status
+	rm -f tools/win/config.cache
+	rm -f tools/win/config.status
+	rm -f tools/win/config.log
+
+override_dh_auto_install:
+	mkdir -p debian/wily/etc/X11/app-defaults/
+	install -m644 misc/Wily.ad \
+           debian/wily/etc/X11/app-defaults/Wily
+
+override_dh_installdocs:
+	dh_installdocs
+	cd Doc && GZIP="-9n" tar --sort=name \
+		--mtime="@${SOURCE_DATE_EPOCH}" \
+		--owner=0 --group=0 --numeric-owner \
+		--pax-option=exthdr.name=%d/PaxHeaders/%f,delete=atime,delete=ctime \
+		--mode=a+rX,og-w \
+		-czhf ../debian/wily/usr/share/doc/wily/tute.tar.gz tute
+	cd misc && GZIP="-9n" tar --sort=name \
+		--mtime="@${SOURCE_DATE_EPOCH}" \
+		--owner=0 --group=0 --numeric-owner \
+		--pax-option=exthdr.name=%d/PaxHeaders/%f,delete=atime,delete=ctime \
+		--mode=a+rX,og-w \
+		-czhf ../debian/wily/usr/share/doc/wily/wily.tar.gz wily
+
+override_dh_installchangelogs:
+	dh_installchangelogs Doc/changes.txt

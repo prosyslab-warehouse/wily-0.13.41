@@ -1,0 +1,4 @@
+#!/usr/bin/rc
+# mailto - generate a mailto link
+
+cat $* | awk '{printf "<a mailto=\"%s\">%s</a>\n", $1, $1 }'

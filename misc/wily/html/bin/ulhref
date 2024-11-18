@@ -1,0 +1,6 @@
+#!/usr/bin/rc
+# uhlhref - create an unordered list, where each list item is an href
+
+echo '<ul>'
+cat $* | awk '{printf " <li><a href=\"%s\">%s</a>\n", $1, $1 }'
+echo '</ul>'

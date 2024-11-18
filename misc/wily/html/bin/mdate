@@ -1,0 +1,3 @@
+#!/usr/bin/rc
+# mdate - metric date
+/bin/date '+%y/%m/%e'

@@ -1,0 +1,37 @@
+Some Wily macros:
+
+README		this file
+acme		rc script - start up wily with some nice macros
+guide		guide file
+h		history program, by Gary
+magic		magic-cat program
+utf		sample UTF text
+wbiff		wily biff
+wilytools	wilytools for wily freaks, additions welcome
+
+The acme script sets some variables (SHELL, HISTORY, $mail),
+reads in your .rcrc file if you have one, defines some useful
+functions for code browsing (untarz, gre, def, uses),
+and then fires up wily with $home and $home/wily/macros/guide open.
+
+The guide file assumes you have the html tools in $home/html
+and has strings for common programming and editing tasks.
+
+The 3 different grep functions are listed by decreasing generality:
+- gre  is likely to get many 'hits' in large source directories
+- sg   is a general-purpose source grep
+- def  searches for function definitions, assumed to start at column 1.
+- uses searches for variable/function calls, it depends on 'grep -w',
+       which is available from gnu-grep if your system doesn't support it.  
+
+The second line of the guide file forms a primitive mail interface.
+Click B2 on 'frm' (the elm program) to list your messages,
+click B2 on $mail to view your mailbox,
+select some text that contains a valid 'To: ' header
+and then fire B2 on sendmail to quickly send some mail,
+or if you want to use the aliases in your .mailrc file
+you can use the ">mail -s 'subject' who" guide instead.
+
+I install these files in $home/wily/macros
+--
+Steve Kotsopoulos  <steve@border.com>

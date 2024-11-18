@@ -1,0 +1,8 @@
+#!/usr/bin/rc
+
+switch ($#*) {
+case 0
+	tail $HISTORY
+case 1
+	grep $1 $HISTORY | tail
+}

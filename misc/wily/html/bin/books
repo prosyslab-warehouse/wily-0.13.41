@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+# books - remove netscape tags from netscape bookmark files
+#         useful if you want to put them into private hotlists
+
+progname=`basename $0`
+
+usage() {
+	echo "Usage: $progname file.html" 1>&2
+	exit 1
+}
+
+if [ $# -lt 1 ]; then
+	# usage
+	exec books $HOME/.netscape/bookmarks.html
+fi
+
+for arg
+do
+	grep http $arg | sed \
+	-e      's/   .DT.//' \
+	-e      's/ ADD_DATE=...........//' \
+	-e    's/ LAST_VISIT=...........//' \
+	-e 's/ LAST_MODIFIED=...........//'
+done

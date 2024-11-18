@@ -1,0 +1,5 @@
+#!/usr/bin/rc
+# remote - tell netscape to open a URL
+for(i) {
+	netscape -noraise -remote 'openURL('^$i^',new-window)'
+}

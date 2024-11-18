@@ -1,0 +1,61 @@
+#!/usr/bin/rc
+# acme - start up wily with some nice defaults
+#
+# usage: wily -f p9font -F p9fixed -a 8
+#
+# addresses:	file:10 (line 10)	file:/wow/	file:#0 (start of file)
+#		file:#20 (character 20)	file:?wow?	file:$  (end of file)
+
+cd $home
+h=`{pwd}
+macros=$h/wily/macros
+SHELL=/usr/bin/rc
+HISTORY=$h/wily/hist
+WILYTOOLS=$macros/wilytools
+WILYFIFO=/tmp/wilyfifo.acme-$USER
+WFILETAG='Del | Look . .. Anchor Snarf'
+WDIRTAG='Del Get | Look ..  gre sg uses'
+WCOLTAG='Delcol New Cut Paste Snarf Anchor Split | Font remote '
+WMAINTAG='Indent rdist -v 9term sam en enr phone tel locate files glimpse wman :, :,.  h '
+
+test -f $h/.rcrc && . $h/.rcrc
+path=($h/wily/html/bin $macros $path)
+m=/var/spool/mail/$USER
+M=$h/Mail/guide
+g=$h/wily/guide
+html=$h/wily/html/guide
+docs=/usr/doc
+work=$h/work/guide
+
+# export some functions
+fn tarlook { gunzip -c $* | tar tvf - }
+fn untarz  { gunzip -c $* | tar xvf - }
+fn tardir  { tar cvf $1.tar $1 && gzip -v $1.tar }
+fn gconfig { CC=shlicc CFLAGS='-g' ./configure '--prefix=/usr/local' }
+fn en  { nenscript -G -fCourier7 $* }
+fn enr { nenscript -G -2r -fCourier5 $* }
+
+# gre  - general-purpose grep
+# sg   - source grep
+# def  - find C/Alef definitions, from Gary (aka decl in Help paper)
+# uses - very crude, from Rob Pike's Help paper
+# wman - manpage browser, uses sed to cut the .1 suffix if it's there
+fn gre  { grep -sn $1 * /dev/null }
+fn sg   { grep -sn $1 *.[hcyl] *.java *.cat /dev/null }
+fn def  { grep -sn '^'^$1 *.[lc] *.java *.cat /dev/null }
+fn uses { grep -sn -w $* *.[cly] *.java *.cat /dev/null }
+fn wman { man `{echo $*|sed 's/\..//'}|col -b|cat -s }
+fn wlint { lint $w }
+fn wspell { spell $w }
+
+# mh functions
+fn chfolder { folder +^$1 }
+fn sin   { scan +inbox}
+fn sTodo { scan +Todo }
+fn sBugs { scan +Bugs }
+fn sBoS  { scan +BoS  }
+fn sBSD  { scan +BSD  }
+fn sFire { scan +Firewalls}
+fn wpack { echo y | packf }
+
+exec wily $* $macros/guide $h

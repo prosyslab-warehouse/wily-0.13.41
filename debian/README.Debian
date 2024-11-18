@@ -1,0 +1,14 @@
+User notes for Debian wily
+--------------------------
+
+To run the Wily tutorial, copy the file /usr/share/doc/wily/tute.tar.gz
+to your account, untar it ('tar zxvf tute.tar.gz' will do), and run the
+command 'wily tute/start'.
+
+When you want to start using guides, copy the file
+/usr/share/doc/wily/wily.tar.gz to your account and untar it.
+The directory wily will contain the html and macros guide directories.
+
+ -- Karl Sackett <krs@caos.aamu.edu>  Tue, 26 Nov 1996 09:47:52 -0600
+ -- MJ Ray <mjr@debian.org>  Thu, 17 Apr 2003 23:40:52 +0100
+

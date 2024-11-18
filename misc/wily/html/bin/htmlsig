@@ -1,0 +1,24 @@
+#!/usr/bin/rc
+#
+# htmlsig - add your signature to an html document
+
+# customize the following to suit
+date=`{sdate}
+verbose='This page by <a href=/~steve/>
+Steve Kotsopoulos</a>, steve@border.com<br>'
+#verbose=''
+
+cat <<EOF
+
+<hr>
+<center>
+<address>
+$verbose
+
+<font size=-1>
+Last update: $date
+
+</font>
+</address>
+</center>
+EOF

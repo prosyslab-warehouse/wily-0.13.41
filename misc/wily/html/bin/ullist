@@ -1,0 +1,6 @@
+#!/usr/bin/rc
+# uhlist - create a simple unordered list
+
+echo '<ul>'
+cat $* | awk '{printf " <li>%s\n", $1 }'
+echo '</ul>'

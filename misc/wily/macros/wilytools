@@ -1,0 +1,22 @@
+ftp.*.c$	sg accept( select( cvs diff
+p9/wily.*/$	gconfig gmake install
+src/wily.*/$	gconfig gmake install
+norman	def make wman
+\.c$	sg uses def wman
+work*/$	cvs diff make
+proxy/$	SO_KEEP
+.h/$	$h $m $M $g $html rdist
+Mail/guide$	frm sin
+html/guide$	Indent remote
+macros/guide$	magic
+Makefile	make install clean
+Errors$	Clear
+win$	uptime df who
+Mace/$	subject mace
+Mace.*/$	subject
+Mace/out	deliver
+Mace	reply wrm
+News	followup
+tmp	xv
+print/$	gv bpr
+/$	make install
